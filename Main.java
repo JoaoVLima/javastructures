@@ -27,6 +27,7 @@ public class Main {
         // pilha.remove();
         // pilha.imprime();
 
-
+        Fila fila = new Fila(10);
+        fila.imprime();
     }
 }
