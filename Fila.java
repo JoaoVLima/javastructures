@@ -45,11 +45,12 @@ public class Fila {
         int inicio = this.inicio;
         if (this.is_cheio()) {
             System.out.print(this.dados[this.inicio]);
+            System.out.print(",");
             inicio++;
         }
         for (int i = inicio; i != this.fim; i = (i + 1) % this.tamanho) {
             if (i != inicio){
-                System.out.print(", ");
+                System.out.print(",");
             }
             System.out.print(this.dados[i]);
         }
