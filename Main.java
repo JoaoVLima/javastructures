@@ -27,7 +27,34 @@ public class Main {
         // pilha.remove();
         // pilha.imprime();
 
-        Fila fila = new Fila(10);
-        fila.imprime();
+        // Fila fila = new Fila(10);
+        // fila.imprime();
+        // fila.insere(1);
+        // fila.imprime();
+        // fila.insere(2);
+        // fila.insere(3);
+        // fila.insere(4);
+        // fila.insere(5);
+        // fila.imprime();
+        // fila.insere(6);
+        // fila.insere(7);
+        // fila.insere(8);
+        // fila.insere(9);
+        // fila.insere(10);
+        // fila.imprime();
+        // fila.remove();
+        // fila.remove();
+        // fila.remove();
+        // fila.insere(11);
+        // fila.insere(12);
+        // fila.insere(13);
+        // fila.imprime();
+        // fila.remove();
+        // fila.remove();
+        // fila.remove();
+        // fila.remove();
+        // fila.imprime();
+
+
     }
 }
