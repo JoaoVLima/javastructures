@@ -11,35 +11,66 @@ public class ListaEncadeada {
 
     void insere(int dado){
         No novo_no = new No(dado);
-        if(this.inicio == null){
+
+        if (this.is_vazio()){
             this.inicio = novo_no;
+            return;
         }
 
-        while(){
-
+        No no = this.inicio;
+        while(no.proximo != null){
+            no = no.proximo;
         }
+
+        no.proximo = novo_no;
     }
 
-    int remove(){
-        return 1;
+    int remove() throws Exception {
+        if (this.is_vazio()){
+            throw new Exception("Lista Vazia");
+        }
+
+        No no = this.inicio;
+
+        if (no.proximo == null) {
+            int valor_removido = this.inicio.dado;
+            this.inicio = null;
+            return valor_removido;
+        }
+
+        while(no.proximo.proximo != null){
+            no = no.proximo;
+        }
+        int valor_removido = no.proximo.dado;
+        no.proximo = null;
+        return valor_removido;
+    }
+
+    void imprime() {
+        System.out.print("[");
+
+        if (this.is_vazio()){
+            System.out.println("]");
+            return;
+        }
+
+        No no = this.inicio;
+        while(no != null){
+            System.out.print(no.dado);
+            no = no.proximo;
+            if(no != null){
+                System.out.print(",");
+            }
+        }
+        System.out.println("]");
     }
 }
 
-public class No {
-    private int dado;
-    private No proximo;
+class No {
+    protected int dado;
+    protected No proximo;
 
     No(int dado){
         this.dado = dado;
-    }
-
-    void encadear(No no){
-        this.proximo = no;
-    }
-
-    No desencadear(){
-        No no = this.proximo;
-        this.proximo = null;
-        return no;
     }
 }
