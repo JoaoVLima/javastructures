@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         Pilha pilha = new Pilha(10);
@@ -55,35 +57,50 @@ public class Main {
         fila.remove();
         fila.imprime();
 
-        // ListaEncadeada lista = new ListaEncadeada();
-        // lista.imprime();
-        // lista.insere(1);
-        // lista.imprime();
-        // lista.remove();
-        // lista.insere(2);
-        // lista.insere(3);
-        // lista.insere(4);
-        // lista.insere(5);
-        // lista.imprime();
-        // lista.insere(6);
-        // lista.insere(7);
-        // lista.insere(8);
-        // lista.insere(9);
-        // lista.insere(10);
-        // lista.imprime();
-        // lista.remove();
-        // lista.remove();
-        // lista.remove();
-        // lista.insere(11);
-        // lista.insere(12);
-        // lista.insere(13);
-        // lista.imprime();
-        // lista.remove();
-        // lista.remove();
-        // lista.remove();
-        // lista.remove();
-        // lista.imprime();
+        ListaEncadeada lista = new ListaEncadeada();
+        lista.imprime();
+        lista.insere(1);
+        lista.imprime();
+        lista.remove();
+        lista.insere(2);
+        lista.insere(3);
+        lista.insere(4);
+        lista.insere(5);
+        lista.imprime();
+        lista.insere(6);
+        lista.insere(7);
+        lista.insere(8);
+        lista.insere(9);
+        lista.insere(10);
+        lista.imprime();
+        lista.remove();
+        lista.remove();
+        lista.remove();
+        lista.insere(11);
+        lista.insere(12);
+        lista.insere(13);
+        lista.imprime();
+        lista.remove();
+        lista.remove();
+        lista.remove();
+        lista.remove();
+        lista.imprime();
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite um numero para inserir na lista encadeada: (ao digitar 0, a lista encadeada será impressa)");
 
+        ListaEncadeada lista_input = new ListaEncadeada();
+        
+        boolean loop = true;
+        while(loop){
+            int numero = scanner.nextInt();
+            if(numero==0){
+                lista_input.imprime();
+                loop = false;
+                continue;
+            }
+            lista_input.insere(numero);
+        }
+        
     }
 }
