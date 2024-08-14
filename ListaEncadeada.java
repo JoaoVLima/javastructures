@@ -25,7 +25,7 @@ public class ListaEncadeada {
         no.proximo = novo_no;
     }
 
-    int remove() throws Exception {
+    int remove_ultimo() throws Exception {
         if (this.is_vazio()){
             throw new Exception("Lista Vazia");
         }
@@ -43,6 +43,34 @@ public class ListaEncadeada {
         }
         int valor_removido = no.proximo.dado;
         no.proximo = null;
+        return valor_removido;
+    }
+
+    int remove(int posicao) throws Exception {
+        if (this.is_vazio()){
+            throw new Exception("Lista Vazia");
+        }
+
+        No no = this.inicio;
+
+        if (posicao == 1){
+            int valor_removido = this.inicio.dado;
+            this.inicio = this.inicio.proximo;
+            return valor_removido;
+        }
+
+        int contador = 1;
+        while (no.proximo != null && contador < posicao - 1) {
+            no = no.proximo;
+            contador++;
+        }
+
+        if (no.proximo == null || no.proximo.proximo == null) {
+            System.out.println("Nó na posição " + posicao + " não existe.");
+        }
+        
+        int valor_removido = no.proximo.dado;
+        no.proximo = no.proximo.proximo;
         return valor_removido;
     }
 
