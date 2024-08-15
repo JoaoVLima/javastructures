@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ListaEncadeada {
     private No inicio;
 
@@ -51,24 +53,24 @@ public class ListaEncadeada {
             throw new Exception("Lista Vazia");
         }
 
-        No no = this.inicio;
-
         if (posicao == 1){
             int valor_removido = this.inicio.dado;
             this.inicio = this.inicio.proximo;
             return valor_removido;
         }
 
-        int contador = 1;
-        while (no.proximo != null && contador < posicao - 1) {
+        No no = this.inicio;
+
+        int contador = 2;
+        while (no.proximo.proximo != null && contador < posicao) {
             no = no.proximo;
             contador++;
         }
 
-        if (no.proximo == null || no.proximo.proximo == null) {
-            System.out.println("Nó na posição " + posicao + " não existe.");
+        if (posicao != contador) {
+            throw new Exception("Nó na posição " + posicao + " não existe.");
         }
-        
+
         int valor_removido = no.proximo.dado;
         no.proximo = no.proximo.proximo;
         return valor_removido;
@@ -91,6 +93,34 @@ public class ListaEncadeada {
             }
         }
         System.out.println("]");
+    }
+
+    void menu() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+
+        while(true){
+            System.out.println("1 - Inserir");
+            System.out.println("2 - Excluir");
+            System.out.println("0 - Parar");
+
+            int opcao = scanner.nextInt();
+            if (opcao == 0) {
+                this.imprime();
+                break;
+            } else if (opcao == 1) {
+                System.out.print("Digite o valor para inserir: ");
+                int valor = scanner.nextInt();
+                this.insere(valor);
+                this.imprime();
+            } else if (opcao == 2) {
+                System.out.print("Digite a posição do nó para excluir: ");
+                int posicao = scanner.nextInt();
+                this.remove(posicao);
+                this.imprime();
+            } else {
+                System.out.println("Opção inválida");
+            }
+        }
     }
 }
 
