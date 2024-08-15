@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Pilha {
     private final int tamanho;
     private int topo;
@@ -43,5 +45,31 @@ public class Pilha {
             }
         }
         System.out.println("]");
+    }
+
+    void menu() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        this.imprime();
+        while(true){
+            System.out.println("1 - Inserir");
+            System.out.println("2 - Excluir");
+            System.out.println("0 - Parar");
+
+            int opcao = scanner.nextInt();
+            if (opcao == 0) {
+                this.imprime();
+                break;
+            } else if (opcao == 1) {
+                System.out.print("Digite o valor para inserir: ");
+                int valor = scanner.nextInt();
+                this.insere(valor);
+                this.imprime();
+            } else if (opcao == 2) {
+                this.remove();
+                this.imprime();
+            } else {
+                System.out.println("Opção inválida");
+            }
+        }
     }
 }
