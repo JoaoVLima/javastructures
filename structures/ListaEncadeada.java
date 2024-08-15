@@ -1,9 +1,11 @@
+package structures;
+
 import java.util.Scanner;
 
 public class ListaEncadeada {
     private No inicio;
 
-    ListaEncadeada() {
+    public ListaEncadeada() {
         this.inicio = null;
     }
 
@@ -95,7 +97,7 @@ public class ListaEncadeada {
         System.out.println("]");
     }
 
-    void menu() throws Exception {
+    public void menu() throws Exception {
         Scanner scanner = new Scanner(System.in);
         this.imprime();
         while(true){

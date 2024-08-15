@@ -1,3 +1,7 @@
+import structures.Fila;
+import structures.ListaEncadeada;
+import structures.Pilha;
+
 import java.util.Scanner;
 
 public class Main {

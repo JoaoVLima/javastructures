@@ -1,3 +1,5 @@
+package structures;
+
 public class Arvore {
     private Folha inicio;
 

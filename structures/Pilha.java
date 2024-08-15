@@ -1,65 +1,55 @@
+package structures;
+
 import java.util.Scanner;
 
-public class Fila {
+public class Pilha {
     private final int tamanho;
-    private int inicio;
-    private int fim;
+    private int topo;
     private int[] dados;
-    private boolean vazia;
 
-    Fila(int tamanho) {
+    public Pilha(int tamanho) {
         this.tamanho = tamanho;
-        this.inicio = 0;
-        this.fim = 0;
+        this.topo = -1;
         this.dados = new int[tamanho];
-        this.vazia = true;
     }
 
     boolean is_cheio() {
-        return (this.inicio == this.fim && !this.vazia);
+        return (this.topo == this.tamanho - 1);
     }
 
     boolean is_vazio() {
-        return this.vazia;
+        return (this.topo == -1);
     }
 
     void insere(int valor) throws Exception {
         if (this.is_cheio()) {
-            throw new Exception("Fila Cheia");
+            throw new Exception("structures.Pilha Cheia");
         }
-        this.dados[this.fim] = valor;
-        this.fim = (this.fim + 1) % this.tamanho;
-        this.vazia = false;
+        topo += 1;
+        this.dados[topo] = valor;
     }
 
     int remove() throws Exception {
         if (this.is_vazio()) {
-            throw new Exception("Fila Vazia");
+            throw new Exception("structures.Pilha Vazia");
         }
-        int valor = this.dados[inicio];
-        this.inicio = (this.inicio + 1) % this.tamanho;
-        this.vazia = this.inicio == this.fim;
-        return valor;
+        int valor_removido = this.dados[topo];
+        topo -= 1;
+        return valor_removido;
     }
 
     void imprime() {
         System.out.print("[");
-        int inicio = this.inicio;
-        if (this.is_cheio()) {
-            System.out.print(this.dados[this.inicio]);
-            System.out.print(",");
-            inicio++;
-        }
-        for (int i = inicio; i != this.fim; i = (i + 1) % this.tamanho) {
-            if (i != inicio){
+        for (int i = 0; i < this.topo + 1; i++) {
+            System.out.print(this.dados[i]);
+            if (i + 1 < this.topo + 1) {
                 System.out.print(",");
             }
-            System.out.print(this.dados[i]);
         }
         System.out.println("]");
     }
 
-    void menu() throws Exception {
+    public void menu() throws Exception {
         Scanner scanner = new Scanner(System.in);
         this.imprime();
         while(true){
