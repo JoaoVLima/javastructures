@@ -1,6 +1,7 @@
 import structures.Fila;
 import structures.ListaCircular;
 import structures.ListaEncadeada;
+import structures.ListaDuplamenteEncadeada;
 import structures.Pilha;
 
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class Main {
         System.out.println("2 - Fila");
         System.out.println("3 - Lista Encadeada");
         System.out.println("4 - Lista Circular");
+        System.out.println("5 - Lista Duplamente Encadeada");
         int opcao = scanner.nextInt();
         if (opcao == 1) {
             Pilha pilha = new Pilha(5);
@@ -26,6 +28,9 @@ public class Main {
         }else if (opcao == 4) {
             ListaCircular lista_circular = new ListaCircular();
             lista_circular.menu();
+        }else if (opcao == 5) {
+            ListaDuplamenteEncadeada lista_duplamente_encadeada = new ListaDuplamenteEncadeada();
+            lista_duplamente_encadeada.menu();
         }
     }
 }
