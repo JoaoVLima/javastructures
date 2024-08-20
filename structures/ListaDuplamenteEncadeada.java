@@ -9,65 +9,40 @@ public class ListaDuplamenteEncadeada {
         this.inicio = null;
     }
 
-    boolean isVazio() {
-        return this.inicio == null;
+    boolean is_vazio() {
+        return (this.inicio == null);
     }
 
-    void insere(int dado) {
-        NoDuplo novoNo = new NoDuplo(dado);
+    void insere(int dado){
+        NoDuplo novo_no = new NoDuplo(dado);
 
-        if (this.isVazio()) {
-            this.inicio = novoNo;
-        } else {
-            NoDuplo no = this.inicio;
-            while (no.proximo != null) {
-                no = no.proximo;
-            }
-            no.proximo = novoNo;
-            novoNo.anterior = no;
+        if (this.is_vazio()) {
+            this.inicio = novo_no;
+            return;
         }
-    }
-
-    int removeUltimo() throws Exception {
-        if (this.isVazio()) {
-            throw new Exception("Lista Vazia");
-        }
-
         NoDuplo no = this.inicio;
-
-        if (no.proximo == null) { // Only one element
-            int valorRemovido = this.inicio.dado;
-            this.inicio = null;
-            return valorRemovido;
-        }
-
         while (no.proximo != null) {
             no = no.proximo;
         }
-
-        int valorRemovido = no.dado;
-        no.anterior.proximo = null;
-        return valorRemovido;
+        no.proximo = novo_no;
+        novo_no.anterior = no;
     }
 
     int remove(int posicao) throws Exception {
-        if (this.isVazio()) {
+        if (this.is_vazio()){
             throw new Exception("Lista Vazia");
         }
 
-        if (posicao == 1) { // Remove the first element
-            int valorRemovido = this.inicio.dado;
+        if (posicao == 1){ // Remove the first element
+            int valor_removido = this.inicio.dado;
             this.inicio = this.inicio.proximo;
-            if (this.inicio != null) {
-                this.inicio.anterior = null;
-            }
-            return valorRemovido;
+            return valor_removido;
         }
 
         NoDuplo no = this.inicio;
 
-        int contador = 1;
-        while (no.proximo != null && contador < posicao) {
+        int contador = 2;
+        while (no.proximo.proximo != null && contador < posicao) {
             no = no.proximo;
             contador++;
         }
@@ -76,29 +51,25 @@ public class ListaDuplamenteEncadeada {
             throw new Exception("Nó na posição " + posicao + " não existe.");
         }
 
-        int valorRemovido = no.dado;
-        if (no.proximo != null) {
-            no.proximo.anterior = no.anterior;
-        }
-        if (no.anterior != null) {
-            no.anterior.proximo = no.proximo;
-        }
-        return valorRemovido;
+        int valor_removido = no.proximo.dado;
+        no.proximo = no.proximo.proximo;
+        return valor_removido;
     }
 
     void imprime() {
         System.out.print("[");
-        if (this.isVazio()) {
+
+        if (this.is_vazio()){
             System.out.println("]");
             return;
         }
 
         NoDuplo no = this.inicio;
-        while (no != null) {
+        while(no != null){
             System.out.print(no.dado);
             no = no.proximo;
-            if (no != null) {
-                System.out.print(", ");
+            if(no != null){
+                System.out.print(",");
             }
         }
         System.out.println("]");
@@ -107,7 +78,7 @@ public class ListaDuplamenteEncadeada {
     public void menu() throws Exception {
         Scanner scanner = new Scanner(System.in);
         this.imprime();
-        while (true) {
+        while(true){
             System.out.println("1 - Inserir");
             System.out.println("2 - Excluir");
             System.out.println("0 - Parar");
@@ -133,14 +104,12 @@ public class ListaDuplamenteEncadeada {
     }
 }
 
-class NoDuplo {
+class NoDuplo{
     protected int dado;
     protected NoDuplo anterior;
     protected NoDuplo proximo;
 
-    NoDuplo(int dado) {
+    NoDuplo(int dado){
         this.dado = dado;
-        this.anterior = null;
-        this.proximo = null;
     }
 }
