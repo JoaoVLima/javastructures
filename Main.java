@@ -1,4 +1,5 @@
 import structures.Fila;
+import structures.ListaCircular;
 import structures.ListaEncadeada;
 import structures.Pilha;
 
@@ -23,7 +24,8 @@ public class Main {
             ListaEncadeada lista_encadeada = new ListaEncadeada();
             lista_encadeada.menu();
         }else if (opcao == 4) {
-
+            ListaCircular lista_circular = new ListaCircular();
+            lista_circular.menu();
         }
     }
 }
