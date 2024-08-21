@@ -36,13 +36,16 @@ public class ListaDuplamenteEncadeada {
         if (posicao == 1){ // Remove the first element
             int valor_removido = this.inicio.dado;
             this.inicio = this.inicio.proximo;
+            if(this.inicio != null){
+                this.inicio.anterior = null;
+            }
             return valor_removido;
         }
 
         NoDuplo no = this.inicio;
 
-        int contador = 2;
-        while (no.proximo.proximo != null && contador < posicao) {
+        int contador = 1;
+        while (no.proximo != null && contador < posicao) {
             no = no.proximo;
             contador++;
         }
@@ -51,8 +54,8 @@ public class ListaDuplamenteEncadeada {
             throw new Exception("Nó na posição " + posicao + " não existe.");
         }
 
-        int valor_removido = no.proximo.dado;
-        no.proximo = no.proximo.proximo;
+        int valor_removido = no.dado;
+        no.anterior.proximo = no.proximo;
         return valor_removido;
     }
 
