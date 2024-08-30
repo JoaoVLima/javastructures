@@ -27,7 +27,7 @@ public class Fila {
 
     void insere(int valor) throws Exception {
         if (this.is_cheio()) {
-            throw new Exception("structures.Fila Cheia");
+            throw new Exception("Fila Cheia");
         }
         this.dados[this.fim] = valor;
         this.fim = (this.fim + 1) % this.tamanho;
@@ -36,7 +36,7 @@ public class Fila {
 
     int remove() throws Exception {
         if (this.is_vazio()) {
-            throw new Exception("structures.Fila Vazia");
+            throw new Exception("Fila Vazia");
         }
         int valor = this.dados[inicio];
         this.inicio = (this.inicio + 1) % this.tamanho;

@@ -23,7 +23,7 @@ public class Pilha {
 
     void insere(int valor) throws Exception {
         if (this.is_cheio()) {
-            throw new Exception("structures.Pilha Cheia");
+            throw new Exception("Pilha Cheia");
         }
         topo += 1;
         this.dados[topo] = valor;
@@ -31,7 +31,7 @@ public class Pilha {
 
     int remove() throws Exception {
         if (this.is_vazio()) {
-            throw new Exception("structures.Pilha Vazia");
+            throw new Exception("Pilha Vazia");
         }
         int valor_removido = this.dados[topo];
         topo -= 1;
