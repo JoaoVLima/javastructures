@@ -30,33 +30,76 @@ public class ArvoreBinaria {
         return no;
     }
 
-    int remove(int posicao) throws Exception {
-        if (this.is_vazio()){
-            throw new Exception("Lista Vazia");
-        }
-
-        if (posicao == 1){
-            int valor_removido = this.inicio.info;
-            this.inicio = this.inicio.direita;
-            return valor_removido;
-        }
-
-        Node no = this.inicio;
-
-        int contador = 2;
-        while (no.direita.direita != null && contador < posicao) {
-            no = no.direita;
-            contador++;
-        }
-
-        if (posicao != contador) {
-            throw new Exception("Nó na posição " + posicao + " não existe.");
-        }
-
-        int valor_removido = no.direita.info;
-        no.direita = no.direita.direita;
-        return valor_removido;
+    void remove_maior() {
+        remove_maior_recursao(this.inicio);
     }
+
+    private Node remove_maior_recursao(Node no) {
+        if (no == null)
+            return null;
+
+        if (no.direita == null)
+            return no.esquerda;
+
+        no.direita = remove_maior_recursao(no.direita);
+        return no;
+    }
+
+
+    void remove_menor() {
+        remove_menor_recursao(this.inicio);
+    }
+
+    private Node remove_menor_recursao(Node no) {
+        if (no == null)
+            return null;
+
+        if (no.esquerda == null)
+            return no.direita;
+
+        no.esquerda = remove_menor_recursao(no.esquerda);
+        return no;
+    }
+
+    public void remove(int info) {
+        remove_recursao(this.inicio, info);
+    }
+
+    private Node remove_recursao(Node no, int info) {
+        if (no == null)
+            return no;
+
+        if (info < no.info)
+            no.esquerda = remove_recursao(no.esquerda, info);
+        else if (info > no.info)
+            no.direita = remove_recursao(no.direita, info);
+        else {
+            // Caso 1: Nó sem filhos (folha)
+            if (no.esquerda == null && no.direita == null)
+                return null;
+
+            // Caso 2: Nó com um filho
+            if (no.esquerda == null)
+                return no.direita;
+            else if (no.direita == null)
+                return no.esquerda;
+
+            // Caso 3: Nó com dois filhos
+            no.info = min_info(no.direita);
+            no.direita = remove_recursao(no.direita, no.info);
+        }
+        return no;
+    }
+
+    private int min_info(Node no) {
+        int min = no.info;
+        while (no.esquerda != null) {
+            min = no.esquerda.info;
+            no = no.esquerda;
+        }
+        return min;
+    }
+
 
     int tamanho(){
         return tamanho_recursao(this.inicio);
@@ -158,7 +201,9 @@ public class ArvoreBinaria {
         this.imprime();
         while(true){
             System.out.println("1 - Inserir");
-            System.out.println("2 - Excluir");
+            System.out.println("2 - Excluir Maior");
+            System.out.println("3 - Excluir Menor");
+            System.out.println("4 - Excluir Valor");
             System.out.println("0 - Parar");
 
             int opcao = scanner.nextInt();
@@ -171,9 +216,15 @@ public class ArvoreBinaria {
                 this.insere(valor);
                 this.imprime();
             } else if (opcao == 2) {
-                System.out.print("Digite a posição do nó para excluir: ");
-                int posicao = scanner.nextInt();
-                this.remove(posicao);
+                this.remove_maior();
+                this.imprime();
+            } else if (opcao == 3) {
+                this.remove_menor();
+                this.imprime();
+            } else if (opcao == 4) {
+                System.out.print("Digite o valor do nó para excluir: ");
+                int info = scanner.nextInt();
+                this.remove(info);
                 this.imprime();
             } else {
                 System.out.println("Opção inválida");
